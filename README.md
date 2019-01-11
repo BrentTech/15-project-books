@@ -1,19 +1,22 @@
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB
 =================================================
 
-## Project Name
+## Project Book App V2
 
-### Author: Student/Group Name
+### Project Team:
+Brent Woodward [github](https://github.com/BrentTech)
+Caity Heath [github](https://github.com/CaityHeath)
+Fletcher LaRue [github](https://github.com/asdFletcher)
 
 ### Links and Resources
-* [repo](http://xyz.com)
-* [travis](http://xyz.com)
+* [repo](https://github.com/BrentTech/15-project-books)
+<!-- * [travis](http://xyz.com)
 * [back-end](http://xyz.com) (when applicable)
-* [front-end](http://xyz.com) (when applicable)
+* [front-end](http://xyz.com) (when applicable) -->
 
 #### Documentation
-* [swagger](http://xyz.com) (API assignments only)
-* [jsdoc](http://xyz.com) (All assignments)
+* [swagger](http://xyz.com)
+* [jsdoc](http://xyz.com)
 
 ### Modules
 #### `modulename.js`
@@ -44,3 +47,12 @@ Usage Notes or examples
 
 #### UML
 Link to an image of the UML for your application and response to events
+
+#### Dependencies
+
+jest
+jsdoc
+swagger
+express
+...
+
