@@ -1,0 +1,32 @@
+testing commands:
+
+
+GET
+http :8080/api/book
+
+POST
+echo '{  "title": "Dune","author":"Frank Herbert","isbn":"ISBN_13 9780441013593", "image_url":"http://books.google.com/books/content?id=B1hSG45JCX4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api", "description":"Follows the adventures of Paul Atreides, the son of a betrayed duke given up for dead on a treacherous desert planet and adopted by its fierce, nomadic people, who help him unravel his most unexpected destiny.", "bookshelf":"Fantasy"}' | http post :8080/api/book
+
+echo '{  "title": "What Alice Forgot","author":"Liane Moriarty","isbn":"ISBN_13 1101515376 9780441013593", "image_url":"http://books.google.com/books/content?id=8iBGzeqj45YC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api", "description":"Alice Love is twenty-nine, crazy about her husband, and pregnant with her first child. So imagine Alice''s surprise when she comes to on the floor of a gym (a gym! She HATES the gym) and is whisked off to the hospital where she discovers the honeymoon is truly over—she''s getting divorced, she has three kids, and she''s actually 39 years old.", "bookshelf":"Fiction"}' | http post :8080/api/book
+
+
+PUT
+5c39698c27c3f2d6a9400bff
+
+echo '{  "title": "New","author":"Dif","isbn":"ISBN_13 1101515376 9780441013593", "image_url":"http://books.google.com/books/content?id=8iBGzeqj45YC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api", "description":"eh......", "bookshelf":"Non fiction"}' | http put :8080/api/book/5c39698c27c3f2d6a9400bff
+
+
+DELETE
+5c39698c27c3f2d6a9400bff
+
+http delete :8080/api/book/5c39698c27c3f2d6a9400bff
+
+
+GET
+http :8080/api/bookshelf
+
+POST
+echo '{  "name": "Fantasy"}' | http post :8080/api/bookshelf
+echo '{  "name": "Fiction"}' | http post :8080/api/bookshelf
+
+
