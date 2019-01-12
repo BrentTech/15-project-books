@@ -5,7 +5,10 @@ require('dotenv').config();
 const express = require('express');
 const pg = require('pg');
 const superagent = require('superagent');
-const methodOverride = require('method-override');
+const methodOverride = require('method-override'); // if we write our own middleware we can probably get rid of this line
+
+const handleError = require('./middleware/error.js');
+const handleNotFound = require('./middleware/404.js');
 
 // Application Setup
 const app = express();
@@ -20,6 +23,11 @@ client.on('error', err => console.error(err));
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
+// TODO: Thoughts:
+// Can we change this callback to our own middleware ?
+// app.use(methodOverride, handleOtherMethods)
+// req.body probably will have the hidden PUT or DELETE request
+// See: /views/pages/books/show.ejs line 27 for more info
 app.use(methodOverride((request, response) => {
   if (request.body && typeof request.body === 'object' && '_method' in request.body) {
     // look in urlencoded POST bodies and delete it
@@ -36,14 +44,24 @@ app.set('view engine', 'ejs');
 app.get('/', getBooks);
 app.post('/searches', createSearch);
 app.get('/searches/new', newSearch);
+
 app.get('/books/:id', getBook);
 app.post('/books', createBook);
 app.put('/books/:id', updateBook);
 app.delete('/books/:id', deleteBook);
 
-app.get('*', (request, response) => response.status(404).send('This route does not exist'));
 
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
+// app.post('/searches', () => {
+//   if (model === searches) {
+//     createSearch
+//   }
+//   if (model === books) {
+//     createBooks
+//   }
+// };
+
+app.get('*', handleNotFound)
 
 // HELPER FUNCTIONS
 function Book(info) {
@@ -161,6 +179,20 @@ function deleteBook(request, response) {
     .catch(err => handleError(err, response));
 }
 
-function handleError(error, response) {
-  response.render('pages/error', {error: error});
-}
+
+let isRunning = false;
+
+module.exports = {
+  server: app,
+  start: (port) => {
+    if( ! isRunning ) {
+      app.listen(port, () => {
+        isRunning = true;
+        console.log(`Server Up on ${port}`);
+      });
+    }
+    else {
+      console.log('Server is already running');
+    }
+  },
+};
