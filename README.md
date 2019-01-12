@@ -56,3 +56,20 @@ swagger
 express
 ...
 
+
+
+
+
+#### Setting up the app for testing on a local environment:
+
+- `.env` - with your PORT and DATABASE_URL. Make sure this file is included in your `.gitignore`
+
+npm i to install dependencies
+
+configure your computer for `postgres`, and `pg`
+
+The postgres database is called `books`. Make sure it exists:
+
+.env file contents:
+DATABASE_URL=postgres://localhost:5432/books
+PORT=8080
