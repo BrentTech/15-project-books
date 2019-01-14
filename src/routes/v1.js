@@ -2,9 +2,6 @@
 
 const express = require('express');
 const modelFinder = require('../middleware/model-finder.js');
-const superagent = require('superagent');
-const books = require('../models/book.js');
-const shelf = require('../models/bookshelf.js')
 const router = express.Router();
 
 const deleteBook = require('./handlers/delete-book.js');

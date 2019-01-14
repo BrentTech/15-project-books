@@ -1,5 +1,7 @@
 'use strict';
 
+const books = require('../../models/book.js');
+
 module.exports = (req, res, next) => {
   books.get(req.params.id)
     .then( data => {

@@ -2,11 +2,12 @@
 
 // Application Dependencies
 const express = require('express');
-const superagent = require('superagent');
-const methodOverride = require('method-override');
+const router = require('./routes/v1.js');
+
+// Middleware
+const methodOverride = require('./middleware/method-override.js');
 const handleError = require('./middleware/error.js');
 const handleNotFound = require('./middleware/404.js');
-const router = require('./routes/v1.js');
 
 // Application Setup
 const app = express();
@@ -15,13 +16,7 @@ const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(express.json());
-app.use(methodOverride((request, response) => {
-  if (request.body && typeof request.body === 'object' && '_method' in request.body) {
-    let method = request.body._method;
-    delete request.body._method;
-    return method;
-  }
-}))
+app.use(methodOverride)
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
