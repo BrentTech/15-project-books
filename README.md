@@ -11,12 +11,9 @@ Fletcher LaRue - [Github](https://github.com/asdFletcher)
 ### Links and Resources
 * [repo](https://github.com/BrentTech/15-project-books)
 * [travis](https://travis-ci.com/BrentTech/15-project-books/builds/97194065)
-* [back-end](http://xyz.com) (when applicable)
-* [front-end](http://xyz.com) (when applicable)
+* [back-end](https://bookappbfc.herokuapp.com/) 
+* [front-end](https://bookappbfc.herokuapp.com/)
 
-#### Documentation
-* [swagger](http://xyz.com)
-* [jsdoc](http://xyz.com)
 
 ### Description:
 Refactors the existing Book App code (repo [here](https://github.com/codefellows-seattle-javascript-401d28/15-project-books)) from a monolithic code base to a modular one.
@@ -33,8 +30,13 @@ The `app.js` file imports a generic route-handling file `v1.js` which imports al
 This modularized approach makes it easier to test, easier to re-use, and easier to read.
 
 ### Modules
----
----
+* create-book.js
+* delete-book.js
+* fetch-books-from-api.js
+* get-all-books.js
+* new-search.js
+* update-book.js
+
 
 #### Setting up the app for testing on a local environment:
 
