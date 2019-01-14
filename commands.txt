@@ -30,3 +30,4 @@ echo '{  "name": "Fantasy"}' | http post :8080/api/bookshelf
 echo '{  "name": "Fiction"}' | http post :8080/api/bookshelf
 
 
+http://localhost:8080/books/5c3bf2c83140a2919ad64709

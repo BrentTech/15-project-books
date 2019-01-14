@@ -11,11 +11,13 @@ const router = express.Router();
 router.param('model', modelFinder);
 
 
+// http://localhost:8080/books/5c3bf2c83140a2919ad64709
 
 router.get('/', getBooks);
+router.get('/books/:id', getBook);
 router.get('/searches/new', newSearch); // enter search data
 router.post('/searches', fetchBookFromApi);
-//router.post('/books', createBook);
+router.post('/books', createBook);
 
 
 //outer.post('/books', createBook);
@@ -46,7 +48,7 @@ router.post('/searches', fetchBookFromApi);
 
 // book constructor, for making books, after they come from the API
 function Book(info) {
-  console.log({info});
+  // console.log({info});
   let placeholderImage = 'https://i.imgur.com/J5LVHEL.jpg';
 
   this.title = info.title || 'No title available';
@@ -59,8 +61,24 @@ function Book(info) {
 
 
 ////////////New Search Form////////////
-function newSearch(request, response) {
-  response.render('pages/searches/new');
+function newSearch(req, res) {
+  res.render('pages/searches/new');
+}
+
+function getBook(req, res){
+  let id = req.params._id;
+
+  req.model.get(id
+    .then( data => {
+      const output = {
+        count: data.length,
+        results: data,
+      };
+
+      console.log(output);
+      res.render(`pages/books/show`, {book: output.results});
+  })
+  .catch( next );
 }
 
 function getBooks(req, res, next) {
@@ -114,24 +132,19 @@ router.delete('/api/:model/:id', handleDelete);
 
 
 function createShelf(bookshelf) {
-  let normalizedShelf = bookshelf.toLowerCase();
-  normalizedShelf.handlePost;
-
+  return shelf.post(bookshelf);
 }
 
-
-
 function createBook(request, response) {
-  createShelf(request.body.bookshelf)
-    .then(id => {
-      let {title, author, isbn, image_url, description} = request.body;
-      let SQL = 'INSERT INTO books(title, author, isbn, image_url, description, bookshelf_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING id;';
-      let values = [title, author, isbn, image_url, description, id];
-
-      client.query(SQL, values)
-        .then(result => response.redirect(`/books/${result.rows[0].id}`))
-        .catch(err => handleError(err, response));
+  let obj = {
+    name: request.body.bookshelf
+  }
+  createShelf(obj)
+    .then(result => {
+      console.log(`After the shelf.post: result: ${result}`);
+      response.redirect(`/books/${result.id}`)
     })
+    .catch(err => handleError(err, response));
 
 }
 
