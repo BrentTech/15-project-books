@@ -10,7 +10,7 @@ Fletcher LaRue - [Github](https://github.com/asdFletcher)
 
 ### Links and Resources
 * [repo](https://github.com/BrentTech/15-project-books)
-* [travis](http://xyz.com)
+* [travis](https://travis-ci.com/BrentTech/15-project-books/builds/97194065)
 * [back-end](http://xyz.com) (when applicable)
 * [front-end](http://xyz.com) (when applicable)
 
