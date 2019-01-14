@@ -24,4 +24,3 @@ bookshelf.pre('find', function() {
 });
 
 module.exports = mongoose.model('bookshelf', bookshelf);
-
