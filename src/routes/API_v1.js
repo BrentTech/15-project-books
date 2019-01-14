@@ -68,7 +68,7 @@ function newSearch(req, res) {
 function getBook(req, res){
   let id = req.params._id;
 
-  req.model.get(id
+  req.model.get(id)
     .then( data => {
       const output = {
         count: data.length,
@@ -77,8 +77,8 @@ function getBook(req, res){
 
       console.log(output);
       res.render(`pages/books/show`, {book: output.results});
-  })
-  .catch( next );
+    })
+    .catch( next );
 }
 
 function getBooks(req, res, next) {
