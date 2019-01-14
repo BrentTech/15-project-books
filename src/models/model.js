@@ -1,5 +1,5 @@
 'use strict';
-
+const util = require('util');
 class dataModel {
   constructor(schema) {
     this.schema = schema;
@@ -16,7 +16,9 @@ class dataModel {
   }
 
   put(_id, record) {
-    return this.schema.findByIdAndUpdate(_id, record, {new:true});
+    let test = this.schema.findByIdAndUpdate(_id, record, {new:true});
+    console.log(`in the put method: ${util.inspect(test)}`);
+    return test;
   }
 
   delete(_id) {
