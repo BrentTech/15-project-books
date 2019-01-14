@@ -15,6 +15,8 @@ router.param('model', modelFinder);
 router.get('/', getBooks);
 router.get('/searches/new', newSearch); // enter search data
 router.post('/searches', fetchBookFromApi);
+//router.post('/books', createBook);
+
 
 //outer.post('/books', createBook);
 
@@ -93,9 +95,6 @@ function fetchBookFromApi(req, res, next){
 }
 
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// v routes for testing the database v
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // router.get('/api/:model', handleGetAll);
 router.post('/api/:model', handlePost);
 router.put('/api/:model/:id', handlePut);
@@ -112,6 +111,30 @@ router.delete('/api/:model/:id', handleDelete);
 //     })
 //     .catch( next );
 // }
+
+
+function createShelf(bookshelf) {
+  let normalizedShelf = bookshelf.toLowerCase();
+  normalizedShelf.handlePost;
+
+}
+
+
+
+function createBook(request, response) {
+  createShelf(request.body.bookshelf)
+    .then(id => {
+      let {title, author, isbn, image_url, description} = request.body;
+      let SQL = 'INSERT INTO books(title, author, isbn, image_url, description, bookshelf_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING id;';
+      let values = [title, author, isbn, image_url, description, id];
+
+      client.query(SQL, values)
+        .then(result => response.redirect(`/books/${result.rows[0].id}`))
+        .catch(err => handleError(err, response));
+    })
+
+}
+
 
 function handlePost(req,res,next) {
   req.model.post(req.body)
