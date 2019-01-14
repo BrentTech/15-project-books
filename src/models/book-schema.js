@@ -12,18 +12,4 @@ const book = mongoose.Schema({
   bookshelf: {type: String, required: true},
 });
 
-// team.virtual('players', {
-//   ref: 'players',
-//   localField: 'name',
-//   foreignField: 'team',
-//   justOne: false,
-// });
-
-// team.pre('find', function() {
-//   try {
-//     this.populate('players');
-//   }
-//   catch(e) {console.log('Find Error', e); }
-// });
-
 module.exports = mongoose.model('book', book);

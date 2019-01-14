@@ -1,5 +1,8 @@
 'use strict';
 
+const superagent = require('superagent');
+const Book = require('../../models/book-constructor.js');
+
 module.exports = (req, res, next) => {
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 
